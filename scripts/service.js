@@ -46,6 +46,19 @@ angular.module('twitterscore')
           }
         }
       );
+    },
+
+    getReputationScore: function(handle){
+      return $http.get(scoreUrl + handle + "/score").then(
+        function(data){
+          return data.data.reputation_score
+        }, function(err){
+          console.log('We have an error',err);
+          return {
+            error: "Error getting profile\n" + err
+          }
+        }
+      );
     }
   }
 });

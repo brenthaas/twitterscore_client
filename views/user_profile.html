@@ -6,6 +6,8 @@
       <li>Location: {{profileInfo.location}}</li>
       <li>Member Since: {{profileInfo.signupYear}}</li>
       <li>Following {{profileInfo.following}} / Followed by {{profileInfo.followers}}</li>
+      <li ng-show="profileInfo.score">Reputation Score: {{profileInfo.score}}pts</li>
+      <li ng-hide="profileInfo.score">Computing Reputation Score... </li>
     </ul>
   </div>
 </div>

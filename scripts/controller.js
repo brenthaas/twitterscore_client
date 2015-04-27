@@ -7,4 +7,8 @@ angular.module('twitterscore')
   scoreService.getRecentTweets(handle).then(function(data){
     $scope.tweets = data;
   });
+  scoreService.getReputationScore(handle).then(function(data){
+    $scope.profileInfo.score = data;
+  });
+  $scope.handle_input = handle;
 });
