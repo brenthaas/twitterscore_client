@@ -19,7 +19,30 @@ angular.module('twitterscore')
         }, function(err){
           console.log('We have an error',err);
           return {
-            error: "Error contacting server\n" + err
+            error: "Error getting profile\n" + err
+          }
+        }
+      );
+    },
+
+    getRecentTweets: function(handle){
+      return $http.get(scoreUrl + handle + "/recent_tweets").then(
+        function(data){
+          var resp = data.data;
+          var tweets = [];
+          for (var i=0; i < resp.length; i++) {
+            tweet = resp[i];
+            tweets.push({
+              text: tweet.text,
+              created_at: tweet.created_at,
+              retweet_count: tweet.retweet_count
+            });
+          }
+          return tweets
+        }, function(err){
+          console.log('We have an error',err);
+          return {
+            error: "Error getting profile\n" + err
           }
         }
       );

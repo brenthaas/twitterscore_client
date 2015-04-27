@@ -12,3 +12,21 @@
 <div class="profile" ng-hide="profileInfo.name">
   <div>Looking up profile info for @{{handle}}</div>
 </div>
+
+<div class="recent-tweets" ng-show="tweets">
+  <div class='recent-tweets-heading'>Recent Tweets</div>
+  <ul class="tweets list-group">
+    <li class="tweet list-group-item" ng-repeat="tweet in tweets">
+      <div class="tweet-info">
+        <div class="badge right">{{tweet.retweet_count}} retweets</div>
+        <div class="left">{{tweet.created_at}}</div>
+      </div>
+      <div class="tweet-content">
+        {{tweet.text}}
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="recent-tweets" ng-hide="tweets">
+  <div>Looking up recent tweets for @{{handle}}...</div>
+</div>
