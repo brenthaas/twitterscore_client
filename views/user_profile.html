@@ -1,40 +1,47 @@
-<div class="profile" ng-show="profileInfo.name">
-  <div>Profile for @{{profileInfo.handle}}:</div>
-  <div class="profile-info">
-    <ul class="profile-details">
-      <li>Name: {{profileInfo.name}}</li>
-      <li>Location: {{profileInfo.location}}</li>
-      <li>Member Since: {{profileInfo.signupYear}}</li>
-      <li>Following {{profileInfo.following}} / Followed by {{profileInfo.followers}}</li>
-      <li ng-show="reputation_score">Reputation Score: {{reputation_score}}pts</li>
-      <li ng-hide="reputation_score">Computing Reputation Score... </li>
+<div ng-hide="error">
+  <div class="profile" ng-show="profileInfo.name">
+    <div>Profile for @{{profileInfo.handle}}:</div>
+    <div class="profile-info">
+      <ul class="profile-details">
+        <li>Name: {{profileInfo.name}}</li>
+        <li>Location: {{profileInfo.location}}</li>
+        <li>Member Since: {{profileInfo.signupYear}}</li>
+        <li>Following {{profileInfo.following}} / Followed by {{profileInfo.followers}}</li>
+        <li ng-show="reputation_score">Reputation Score: {{reputation_score}}pts</li>
+        <li ng-hide="reputation_score">Computing Reputation Score... </li>
+      </ul>
+    </div>
+  </div>
+  <div class="profile" ng-hide="profileInfo.name">
+    <div>Looking up profile info for @{{handle}}</div>
+  </div>
+
+  <div class="recent-tweets" ng-show="tweets" ng-init="sort_tweets_by='-timestamp'">
+    <div class='recent-tweets-heading'>Recent Tweets</div>
+    <div class="tweet-filtering">
+      <span class="date-sorting">
+        Sort by:
+        Newest <input type="radio" ng-model="sort_tweets_by" ng-value="'timestamp'">
+        Oldest <input type="radio" ng-model="sort_tweets_by" ng-value="'-timestamp'">
+      </span>
+    </div>
+    <ul class="tweets list-group">
+      <li class="tweet list-group-item" ng-repeat="tweet in tweets | orderBy:sort_tweets_by">
+        <div class="tweet-info">
+          <div class="badge right">{{tweet.retweet_count}} retweets</div>
+          <div class="left">{{tweet.created_at}}</div>
+        </div>
+        <div class="tweet-content">
+          {{tweet.text}}
+        </div>
+      </li>
     </ul>
   </div>
-</div>
-<div class="profile" ng-hide="profileInfo.name">
-  <div>Looking up profile info for @{{handle}}</div>
+  <div class="recent-tweets" ng-hide="tweets">
+    <div>Looking up recent tweets for @{{handle}}...</div>
+  </div>
 </div>
 
-<div class="recent-tweets" ng-show="tweets" ng-init="sort_tweets_by='-timestamp'">
-  <div class='recent-tweets-heading'>Recent Tweets</div>
-  <div class="tweet-filtering">
-    <span class="date-sorting">
-      Sort by:
-      Newest <input type="radio" ng-model="sort_tweets_by" ng-value="'timestamp'">
-      Oldest <input type="radio" ng-model="sort_tweets_by" ng-value="'-timestamp'">
-  </div>
-  <ul class="tweets list-group">
-    <li class="tweet list-group-item" ng-repeat="tweet in tweets | orderBy:sort_tweets_by">
-      <div class="tweet-info">
-        <div class="badge right">{{tweet.retweet_count}} retweets</div>
-        <div class="left">{{tweet.created_at}}</div>
-      </div>
-      <div class="tweet-content">
-        {{tweet.text}}
-      </div>
-    </li>
-  </ul>
-</div>
-<div class="recent-tweets" ng-hide="tweets">
-  <div>Looking up recent tweets for @{{handle}}...</div>
+<div class="error-messages" ng-show="error">
+  <p>Uh oh! An error occurred: {{error.text}}</p>
 </div>

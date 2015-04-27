@@ -1,6 +1,6 @@
 angular.module('twitterscore')
 .factory('scoreService', function($http){
-  var scoreUrl = 'http://twitterscore.herokuapp.com/users/';
+  var scoreUrl = location.origin.match(/localhost/) ? 'http://localhost:3000/users/' : 'http://twitterscore.herokuapp.com/users/';
 
   return {
     getProfileInfo: function(handle){
@@ -15,11 +15,6 @@ angular.module('twitterscore')
             signupYear: signupDate.getFullYear(),
             following: resp.friends_count,
             followers: resp.followers_count
-          }
-        }, function(err){
-          console.log('We have an error',err);
-          return {
-            error: "Error getting profile\n" + err
           }
         }
       );
