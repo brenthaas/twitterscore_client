@@ -8,7 +8,7 @@ angular.module('twitterscore')
     $scope.tweets = data;
   });
   scoreService.getReputationScore(handle).then(function(data){
-    $scope.profileInfo.score = data;
+    $scope.reputation_score = data;
   });
   $scope.handle_input = handle;
 });

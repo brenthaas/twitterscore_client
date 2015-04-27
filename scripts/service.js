@@ -35,6 +35,7 @@ angular.module('twitterscore')
             tweets.push({
               text: tweet.text,
               created_at: tweet.created_at,
+              timestamp: Date.parse(tweet.created_at),
               retweet_count: tweet.retweet_count
             });
           }
