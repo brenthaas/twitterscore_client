@@ -1,38 +1,51 @@
 <div ng-hide="error">
-  <div class="profile" ng-show="profileInfo.name">
-    <div>Profile for @{{profileInfo.handle}}:</div>
-    <div class="profile-info">
+
+  <div class="panel panel-default profile" ng-show="profileInfo.name">
+    <div class="panel-heading">
+      <h3 class="panel-title">Profile for @{{profileInfo.handle}}</h3>
+    </div>
+    <div class="panel-body profile-info">
       <ul class="profile-details">
         <li>Name: {{profileInfo.name}}</li>
         <li>Location: {{profileInfo.location}}</li>
         <li>Member Since: {{profileInfo.signupYear}}</li>
         <li>Following {{profileInfo.following}} / Followed by {{profileInfo.followers}}</li>
         <li ng-show="reputation_score">Reputation Score: {{reputation_score}}pts</li>
-        <li ng-hide="reputation_score">Computing Reputation Score... </li>
+        <li ng-hide="reputation_score">
+          Computing Reputation Score
+          <span class="glyphicon glyphicon-refresh spinning"></span>
+        </li>
       </ul>
     </div>
   </div>
-  <div class="profile" ng-hide="profileInfo.name">
-    <div>Looking up profile info for @{{handle}}</div>
+
+  <div class="panel panel-default profile" ng-hide="profileInfo.name">
+    <div>
+      Looking up profile info for @{{handle}}
+      <span class="glyphicon glyphicon-refresh spinning"></span>
+    </div>
   </div>
 
   <div class="recent-tweets" ng-show="tweets" ng-init="sort_tweets_by='-timestamp'">
-    <div class='recent-tweets-heading'>Recent Tweets</div>
-    <div class="tweet-filtering">
-      <div class="retweet-filtering">
-        Minimum Retweets <input class="min-retweets" ng-model="min_retweets">
+    <nav class="navbar navbar-default filter-nav">
+      <div class="container-fluid">
+       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="filter-heading">Filters: </li>
+            <li class="retweet-filtering">
+              Minimum Retweets <input class="min-retweets" ng-model="min_retweets">
+            </li>
+            <li class="date-sorting">
+              Sort by:
+              Newest <input type="radio" ng-model="sort_tweets_by" ng-value="'timestamp'">
+              Oldest <input type="radio" ng-model="sort_tweets_by" ng-value="'-timestamp'">
+            </li>
+            <li class="image-sorting">
+              Only With Media? <input type="checkbox" ng-model="only_media">
+            </li>
+          </ul>
       </div>
-      <div class="date-sorting">
-        Sort by:
-        Newest <input type="radio" ng-model="sort_tweets_by" ng-value="'timestamp'">
-        Oldest <input type="radio" ng-model="sort_tweets_by" ng-value="'-timestamp'">
-      </div>
-      <div class="image-sorting">
-        Include Images?
-        No <input type="radio" ng-model="filter_images.media_urls" ng-value="false">
-        Yes <input type="radio" ng-model="filter_images" ng-value="">
-      </div>
-    </div>
+    </nav>
     <ul class="tweets list-group">
       <li class="tweet list-group-item" ng-repeat="tweet in tweets | orderBy:sort_tweets_by | filter: onlyMediaFilter | filter: minRetweetsFilter">
         <div class="tweet-info">
@@ -49,7 +62,10 @@
     </ul>
   </div>
   <div class="recent-tweets" ng-hide="tweets">
-    <div>Looking up recent tweets for @{{handle}}...</div>
+    <div>
+      Looking up recent tweets for @{{handle}}
+      <span class="glyphicon glyphicon-refresh spinning"></span>
+    </div>
   </div>
 </div>
 

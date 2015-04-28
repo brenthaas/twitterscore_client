@@ -3,6 +3,37 @@ body {
   padding-right: 20px;
 }
 
+.heading {
+  display: inline-block;
+  float: left;
+}
+
+.page-header {
+  display: inline-block;
+  width: 100%;
+}
+
+.lookup-form {
+  float: right;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.filter-heading {
+  font-size: 1.2em;
+}
+
+.profile {
+  float: left;
+  clear: left;
+  width: 30%;
+}
+
+.recent-tweets {
+  float: right;
+  width: 68%;
+}
+
 .left {
   float: left;
 }
@@ -18,10 +49,29 @@ body {
 
 .tweet-content {
   clear: both;
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-style: italic;
+}
+
+nav.filter-nav li {
+  margin: 10px;
 }
 
 input.min-retweets {
   width: 60px;
+}
+
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
 }
