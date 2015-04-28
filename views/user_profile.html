@@ -33,6 +33,9 @@
         </div>
         <div class="tweet-content">
           {{tweet.text}}
+          <div class="tweet-media" ng-repeat="url in tweet.media_urls">
+            <img src={{url}} height="42" width="42">
+          </div>
         </div>
       </li>
     </ul>
