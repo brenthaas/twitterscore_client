@@ -15,4 +15,9 @@ angular.module('twitterscore')
     $scope.error = { text: err.statusText };
   });
   $scope.handle_input = handle;
+
+  $scope.minRetweetsFilter = function(item){
+    var min_retweets = $scope.min_retweets || 0;
+    return item.retweet_count >= min_retweets;
+  }
 });

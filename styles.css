@@ -20,5 +20,8 @@ body {
   clear: both;
   font-size: 1.5em;
   font-style: italic;
+}
 
+input.min-retweets {
+  width: 60px;
 }

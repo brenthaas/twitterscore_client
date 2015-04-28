@@ -19,14 +19,17 @@
   <div class="recent-tweets" ng-show="tweets" ng-init="sort_tweets_by='-timestamp'">
     <div class='recent-tweets-heading'>Recent Tweets</div>
     <div class="tweet-filtering">
-      <span class="date-sorting">
+      <div class="retweet-filtering">
+        Minimum Retweets <input class="min-retweets" ng-model="min_retweets">
+      </div>
+      <div class="date-sorting">
         Sort by:
         Newest <input type="radio" ng-model="sort_tweets_by" ng-value="'timestamp'">
         Oldest <input type="radio" ng-model="sort_tweets_by" ng-value="'-timestamp'">
       </span>
     </div>
     <ul class="tweets list-group">
-      <li class="tweet list-group-item" ng-repeat="tweet in tweets | orderBy:sort_tweets_by">
+      <li class="tweet list-group-item" ng-repeat="tweet in tweets | orderBy:sort_tweets_by | filter: filter_images | filter: minRetweetsFilter">
         <div class="tweet-info">
           <div class="badge right">{{tweet.retweet_count}} retweets</div>
           <div class="left">{{tweet.created_at}}</div>
