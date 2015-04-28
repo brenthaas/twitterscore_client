@@ -26,7 +26,12 @@
         Sort by:
         Newest <input type="radio" ng-model="sort_tweets_by" ng-value="'timestamp'">
         Oldest <input type="radio" ng-model="sort_tweets_by" ng-value="'-timestamp'">
-      </span>
+      </div>
+      <div class="image-sorting">
+        Include Images?
+        No <input type="radio" ng-model="filter_images.media_urls" ng-value="false">
+        Yes <input type="radio" ng-model="filter_images" ng-value="">
+      </div>
     </div>
     <ul class="tweets list-group">
       <li class="tweet list-group-item" ng-repeat="tweet in tweets | orderBy:sort_tweets_by | filter: filter_images | filter: minRetweetsFilter">
@@ -37,7 +42,7 @@
         <div class="tweet-content">
           {{tweet.text}}
           <div class="tweet-media" ng-repeat="url in tweet.media_urls">
-            <img src={{url}} height="42" width="42">
+            <img ng-src={{url}} ng-href={{url}} height="100" width="100">
           </div>
         </div>
       </li>

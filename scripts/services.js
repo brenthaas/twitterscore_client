@@ -27,11 +27,12 @@ angular.module('twitterscore')
           var tweets = [];
           for (var i=0; i < resp.length; i++) {
             tweet = resp[i];
+            create_date = new Date(tweet.created_at);
             tweets.push({
               text: tweet.text,
-              created_at: tweet.created_at,
+              created_at: create_date.toString(),
               media_urls: tweet.media_urls,
-              timestamp: Date.parse(tweet.created_at),
+              timestamp: create_date.getTime(),
               retweet_count: tweet.retweet_count
             });
           }
