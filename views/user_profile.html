@@ -34,7 +34,7 @@
       </div>
     </div>
     <ul class="tweets list-group">
-      <li class="tweet list-group-item" ng-repeat="tweet in tweets | orderBy:sort_tweets_by | filter: filter_images | filter: minRetweetsFilter">
+      <li class="tweet list-group-item" ng-repeat="tweet in tweets | orderBy:sort_tweets_by | filter: onlyMediaFilter | filter: minRetweetsFilter">
         <div class="tweet-info">
           <div class="badge right">{{tweet.retweet_count}} retweets</div>
           <div class="left">{{tweet.created_at}}</div>

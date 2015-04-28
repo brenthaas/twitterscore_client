@@ -20,4 +20,8 @@ angular.module('twitterscore')
     var min_retweets = $scope.min_retweets || 0;
     return item.retweet_count >= min_retweets;
   }
+
+  $scope.onlyMediaFilter = function(item){
+    return $scope.only_media ? item.media_urls.length > 0 : true
+  }
 });
